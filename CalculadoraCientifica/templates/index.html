@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Científica Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Científica Web</h1>
+        <form method="POST" action="{{ url_for('index') }}">
+            <input type="number" step="any" name="num1" placeholder="Ingresa el primer número" required />
+            <input type="number" step="any" name="num2" placeholder="Ingresa el segundo número (opcional)" />
+            <select name="operation" required>
+                <option value="add">Suma</option>
+                <option value="subtract">Resta</option>
+                <option value="multiply">Multiplicación</option>
+                <option value="divide">División</option>
+                <option value="sin">Seno</option>
+                <option value="cos">Coseno</option>
+                <option value="tan">Tangente</option>
+                <option value="log">Logaritmo base 10</option>
+                <option value="power">Potencia</option>
+            </select>
+            <button type="submit">Calcular</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result">
+            <strong>Resultado:</strong> {{ result }}
+        </div>
+        {% endif %}
+
+        {% if error is not none %}
+        <div class="error">
+            <strong>{{ error }}</strong>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
